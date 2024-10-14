@@ -41,6 +41,13 @@ class Conexion:
         return cls._pool.getconn()
             
     @classmethod
-    def liberarConexion(self, conexion):
+    def liberarConexion(cls, conexion):
         Conexion.obtenerPool().putconn(conexion)                   
 
+    @classmethod
+    def cerrarConexiones(cls):
+        if cls._pool is not None:
+            cls._pool.closeall()
+            log.debug('Todas las conexiones del pool han sido cerradas')
+        else:
+            log.debug('No hay conexiones en el pool para cerrar')
