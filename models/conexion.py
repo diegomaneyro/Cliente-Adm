@@ -37,7 +37,8 @@ class Conexion:
     @classmethod
     def obtenerConexion(cls):       
         if cls._pool == None:
-            pass
+            cls.obtenerPool()
+        return cls._pool.getconn()
             
     @classmethod
     def liberarConexion(self, conexion):
