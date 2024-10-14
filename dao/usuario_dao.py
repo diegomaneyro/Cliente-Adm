@@ -12,9 +12,9 @@ class UsuarioDAO:
 
     # Metodo que devuelve una lista de los objetos usuarios registrados en la db  
     @classmethod
-    def selecionar(cls):
+    def seleccionar(cls):
         usuarios = []
-        with Conexion.obtenerConexion():
+        with Conexion.obtenerConexion() as conn:
             with CursorDelPool() as cursor:               
                 cursor.execute(cls._SELECCIONAR)
                 registros = cursor.fetchall()

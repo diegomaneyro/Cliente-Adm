@@ -24,7 +24,6 @@ class CursorDelPool:
                 self._conn.commit()
         finally:    
             self._cursor.close()            
-            from models.conexion import Conexion
-            Conexion.cerrarConexiones()
+            from models.conexion import Conexion            
             Conexion.devolverConexion(self._conn)
             
