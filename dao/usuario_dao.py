@@ -46,6 +46,6 @@ class UsuarioDAO:
     def eliminar(cls, usuario):
         with Conexion.obtenerConexion():
             with CursorDelPool() as cursor:               
-                valor = (usuario.id_usuario)
+                valor = (usuario.id_usuario,)
                 cursor.execute(cls._ELIMINAR, valor)
                 log.info(f'usuario eliminado: {usuario}')

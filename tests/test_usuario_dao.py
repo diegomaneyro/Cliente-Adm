@@ -20,22 +20,22 @@ class TestUsuarioDAO(unittest.TestCase):
         log.info("Prueba finalizada.")
 
     def test_insertar(self):
-        usuario = Usuario(1, 'usuario_test', 'password_test')
+        usuario = Usuario(10, 'usuario_test', 'password_test')
         UsuarioDAO.insertar(usuario)
         log.info(f'Insertar prueba: {usuario}')
-
+    
     def test_seleccionar(self):
-        usuarios = UsuarioDAO.seleccionar()
+        usuarios = UsuarioDAO.seleccionar()  # Llamada al método, no referencia al método
         log.info(f'Seleccionar prueba: {usuarios}')
-        self.assertGreater(len(usuarios), 0)  # Verifica que se haya seleccionado al menos un usuario
+        self.assertGreater(len(usuarios), 0)  # Verifica que se haya seleccionado al menos un usuario    
 
     def test_actualizar(self):
-        usuario = Usuario(1, 'usuario_actualizado', 'password_actualizado')
+        usuario = Usuario(10, 'usuario_actualizado', 'password_actualizado')
         UsuarioDAO.actualizar(usuario)
         log.info(f'Actualizar prueba: {usuario}')
 
     def test_eliminar(self):
-        usuario = Usuario(1, 'usuario_actualizado', 'password_actualizado')
+        usuario = Usuario(10, 'usuario_actualizado', 'password_actualizado')
         UsuarioDAO.eliminar(usuario)
         log.info(f'Eliminar prueba: {usuario}')
         usuarios = UsuarioDAO.seleccionar()

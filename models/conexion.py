@@ -11,7 +11,7 @@ class Conexion:
     _DB_PORT = '5432'
     _HOST = '127.0.0.1'
     _MIN_CON = 1
-    _MAX_CON = 5
+    _MAX_CON = 6
     _pool = None
 
 
@@ -42,7 +42,7 @@ class Conexion:
             
     @classmethod
     def liberarConexion(cls, conexion):
-        Conexion.obtenerPool().putconn(conexion)                   
+        cls.obtenerPool().putconn(conexion)                   
 
     @classmethod
     def cerrarConexiones(cls):
