@@ -35,20 +35,11 @@ class Conexion:
             return cls._pool
 
     @classmethod
-    def obtenerConexion(cls):
-        conexion = Conexion()
-        if cls._pool ==None:
-            conexion = cls.obtenerPool().getconn()
+    def obtenerConexion(cls):       
+        if cls._pool == None:
+            pass
             
-            try:
-                with Conexion() as conexion:
-                    with conexion.cursor() as cursor:
-                        sentencia = 'SELECT * FROM usuario'
-                        cursor.execute()
-                        registros = cursor.fetchall(sentencia)
-                        log. debug(registros)
-            except Exception as e:
-                log.debug('ocurrio una excepcion',e)
-        else:
-            return conexion             
+    @classmethod
+    def liberarConexion(self, conexion):
+        Conexion.obtenerPool().putconn(conexion)                   
 

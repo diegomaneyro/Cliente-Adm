@@ -3,11 +3,22 @@ from models.conexion import Conexion
 
 class CursorDelPool:
     def __init__(self) -> None:
-        self._cursor 
-        self._conn
+        self._cursor = None
+        self._conn = None
 
-    def __enter__(slef):
-        pass
+    def __enter__(self):
+        try:
+            self._conn = Conexion.obtenerPool().getconn()
+            self._cursor = self._conn.cursor()
+        except Exception as e:
+            log.debug(f'Ocurrio un error al obtener el cursor {e}')
 
-    def __exit__(self):
-        pass
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        if exc_tb or exc_type or exc_tb:
+            log.debug(f'Ocurrio un eror en la ejecucion {exc_val} ')
+            self._conn.rollback()
+        else:
+            self._conn.commit()
+        self._cursor.close()
+        Conexion.devolverConexion(self._conn)
+        
