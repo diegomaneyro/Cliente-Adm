@@ -27,12 +27,21 @@ class UsuarioDAO:
 
     @classmethod 
     def insertar(cls, usuario):
-        pass
+        with Conexion.obtenerConexion():
+            with CursorDelPool() as cursor:               
+                valores = (usuario.id_usuario, usuario.username, usuario.password)
+                cursor.execute(cls._INSERTAR, valores)
+                log.info(f'Usuario insertado: {usuario}')
+
 
     @classmethod
     def actualizar(cls, usuario):
-        pass
+        with Conexion.obtenerConexion():
+            with CursorDelPool() as cursor:               
+                cursor.execute()
 
     @classmethod
     def eliminar(cls, usuario):
-        pass       
+        with Conexion.obtenerConexion():
+            with CursorDelPool() as cursor:               
+                cursor.execute()
