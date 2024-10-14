@@ -1,5 +1,4 @@
 from config.logger_base import log
-from models.conexion import Conexion
 
 class CursorDelPool:
     def __init__(self) -> None:
@@ -8,19 +7,24 @@ class CursorDelPool:
 
     def __enter__(self):
         try:
+            from models.conexion import Conexion
             self._conn = Conexion.obtenerPool().getconn()
             self._cursor = self._conn.cursor()
             return self._cursor
         except Exception as e:
             log.debug(f'Ocurrio un error al obtener el cursor')
             raise e
-    def __exit__(self, exc_type, exc_val, exc_tb):
-        if exc_tb or exc_type or exc_tb:
-            log.debug(f'Ocurrio un eror en la ejecucion {exc_val} ')
-            self._conn.rollback()
-        else:
-            self._conn.commit()
-        self._cursor.close()
-        Conexion.cerrarConexiones()
-        Conexion.devolverConexion(self._conn)
         
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        try:
+            if exc_tb or exc_type or exc_tb:
+                log.debug(f'Ocurrio un eror en la ejecucion {exc_val} ')
+                self._conn.rollback()
+            else:
+                self._conn.commit()
+        finally:    
+            self._cursor.close()            
+            from models.conexion import Conexion
+            Conexion.cerrarConexiones()
+            Conexion.devolverConexion(self._conn)
+            
