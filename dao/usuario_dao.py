@@ -38,10 +38,14 @@ class UsuarioDAO:
     def actualizar(cls, usuario):
         with Conexion.obtenerConexion():
             with CursorDelPool() as cursor:               
-                cursor.execute()
+                valores = (usuario.username, usuario.password, usuario.id_usuario)
+                cursor.execute(cls._ACTUALIZAR, valores)
+                log.info(f'Usuario actualizado: {usuario}')
 
     @classmethod
     def eliminar(cls, usuario):
         with Conexion.obtenerConexion():
             with CursorDelPool() as cursor:               
-                cursor.execute()
+                valor = (usuario.id_usuario)
+                cursor.execute(cls._ELIMINAR, valor)
+                log.info(f'usuario eliminado: {usuario}')
