@@ -20,7 +20,7 @@ class TestUsuarioDAO(unittest.TestCase):
         log.info("Prueba finalizada.")
 
     def test_insertar(self):
-        usuario = Usuario(10, 'usuario_test', 'password_test')
+        usuario = Usuario(username='usuario_test', password='password_test')
         UsuarioDAO.insertar(usuario)
         log.info(f'Insertar prueba: {usuario}')
     
