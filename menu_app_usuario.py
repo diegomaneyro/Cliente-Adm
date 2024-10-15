@@ -19,13 +19,13 @@ while salir is not None:
         3) Actualizar usuario
         4) Eliminar usuario
         5) Salir''')
-    opcion = int(input('Elija una opcion para continuar: '))
-    if opcion is not 5:
+    opcion = int(input('\nElija una opcion para continuar: '))
+    if opcion != 5:
         
         if opcion == 1:
             usuarios = UsuarioDAO.seleccionar()
             for usuario in usuarios:
-                print(f'ID_usuario: {usuario.id_usuario} -  username: {usuario.username} - password: {usuario.password}')
+                print(f'\nID_usuario: {usuario.id_usuario} -  username: {usuario.username} - password: {usuario.password}')
         
         elif opcion == 2:
             username = input('Ingrese username: ')
@@ -34,9 +34,14 @@ while salir is not None:
             UsuarioDAO.insertar(usuario)
                     
         elif opcion == 3:
-            pass
+            id = int(input('Ingrese id_usuario a actualizar: '))
+            username = input('Ingrese username: ')
+            password = input('Ingrese password: ')            
+            usuario = Usuario(username = username, password = password, id_usuario = id)
+            UsuarioDAO.actualizar(usuario)
+            
         elif opcion == 4:
-            id = int(input('Ingrese id_usuario para eliminar: '))
+            id = int(input('\nIngrese id_usuario para eliminar: '))
             usuario = Usuario(id_usuario = id)
             UsuarioDAO.eliminar(usuario)
         else:
