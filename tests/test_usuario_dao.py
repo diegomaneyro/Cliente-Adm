@@ -30,12 +30,12 @@ class TestUsuarioDAO(unittest.TestCase):
         self.assertGreater(len(usuarios), 0)  # Verifica que se haya seleccionado al menos un usuario    
 
     def test_actualizar(self):
-        usuario = Usuario(10, 'usuario_actualizado', 'password_actualizado')
+        usuario = Usuario(id_usuario=6, username='usuario_actualizado', password='password_actualizado')
         UsuarioDAO.actualizar(usuario)
         log.info(f'Actualizar prueba: {usuario}')
 
     def test_eliminar(self):
-        usuario = Usuario(10, 'usuario_actualizado', 'password_actualizado')
+        usuario = Usuario(1, 'usuario_actualizado', 'password_actualizado')
         UsuarioDAO.eliminar(usuario)
         log.info(f'Eliminar prueba: {usuario}')
         usuarios = UsuarioDAO.seleccionar()
