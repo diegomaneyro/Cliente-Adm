@@ -1,6 +1,8 @@
 class Usuario:
-    def __init__(self, id_usuario: int, username: str, password: str):
-        self._id_usuario = id_usuario
+    contador_usuarios = 0
+    def __init__(self, username: str, password: str):
+        Usuario.contador_usuarios += 1
+        self._id_usuario = Usuario.contador_usuarios
         self._username = username
         self._password = password
 

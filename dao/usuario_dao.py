@@ -5,7 +5,7 @@ from config.logger_base import log
 
 class UsuarioDAO:    
     _SELECCIONAR = 'SELECT * FROM usuario'
-    _INSERTAR = 'INSERT INTO usuario(id_usuario, username, password) VALUES (%s, %s, %s)'
+    _INSERTAR = 'INSERT INTO usuario(username, password) VALUES (%s, %s)'
     _ACTUALIZAR = 'UPDATE usuario SET username= %s, password=%s WHERE id_usuario= %s'
     _ELIMINAR = 'DELETE FROM usuario WHERE id_usuario = %s'
 
@@ -29,7 +29,7 @@ class UsuarioDAO:
     def insertar(cls, usuario):
         with Conexion.obtenerConexion():
             with CursorDelPool() as cursor:               
-                valores = (usuario.id_usuario, usuario.username, usuario.password)
+                valores = (usuario.username, usuario.password)
                 cursor.execute(cls._INSERTAR, valores)
                 log.info(f'Usuario insertado: {usuario}')
 
