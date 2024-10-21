@@ -1,5 +1,8 @@
 # Laboratorio de Usuarios
 
+!(docs/lab_user.jfif)
+
+
 Este proyecto implementa una aplicación para gestionar usuarios en una base de datos, utilizando operaciones CRUD (Create, Read, Update, Delete). El sistema está diseñado para manejar conexiones a la base de datos a través de un pool de conexiones, y permite realizar transacciones de manera eficiente.
 
 ## Base de Datos Utilizada
