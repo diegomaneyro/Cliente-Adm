@@ -1,4 +1,4 @@
-# Laboratorio de Usuarios
+# Cliente ADM
 
 <div align="center">
   <img src="lab_user.jfif" alt="Laboratorio de Usuarios" width="400"/>
