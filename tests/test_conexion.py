@@ -1,5 +1,5 @@
 import unittest
-from models.conexion import *
+from models.conexion import Conexion
 from config.logger_base import log
 from psycopg import OperationalError
 
