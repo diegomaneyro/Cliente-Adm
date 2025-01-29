@@ -7,12 +7,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 class Conexion:
-
-    _DATABASE = os.getenv('DB_NAME')
-    _USERNAME = os.getenv('DB_USER')
-    _PASSWORD = os.getenv('DB_PASSWORD')
-    _DB_PORT = os.getenv('DB_PORT')
-    _HOST = os.getenv('DB_HOST')
+    _DATABASE_URL = os.getenv('EXTERNAL_DATABASE_URL')
     _MIN_CON = 1
     _MAX_CON = 6
     _pool = None
@@ -21,8 +16,7 @@ class Conexion:
     def obtenerPool(cls):
         if cls._pool is None:
             try:
-                conn_str = f"postgresql://{cls._USERNAME}:{cls._PASSWORD}@{cls._HOST}:{cls._DB_PORT}/{cls._DATABASE}"
-                cls._pool = ConnectionPool(conninfo=conn_str, min_size=cls._MIN_CON, max_size=cls._MAX_CON)                
+                cls._pool = ConnectionPool(conninfo=cls._DATABASE_URL, min_size=cls._MIN_CON, max_size=cls._MAX_CON)                
                 log.debug(f'Se creó el pool de conexiones correctamente')
                 return cls._pool
             except Exception as e:

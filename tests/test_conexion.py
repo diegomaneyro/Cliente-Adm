@@ -3,17 +3,6 @@ from models.conexion import Conexion
 from config.logger_base import log
 from psycopg import OperationalError
 
-'''
-setUpClass y tearDownClass: Métodos para ejecutar acciones antes y después de todas las pruebas,
-ideal para inicializar y finalizar el logging.
-
-setUp y tearDown: Métodos que se ejecutan antes y después de cada prueba individual,
-útiles para registrar cada inicio y fin de prueba.
-
-Uso de log.info en las pruebas: Para registrar información sobre el estado y el progreso
-de las pruebas en los logs, proporcionando detalles adicionales.
-'''
-
 class TestConexion(unittest.TestCase):
 
     @classmethod
@@ -53,7 +42,7 @@ class TestConexion(unittest.TestCase):
             conexion = Conexion.obtenerConexion()
             log.info(f"Liberando conexión: {conexion}")
             Conexion.liberarConexion(conexion)
-            self.assertFalse(conexion.closed)  # Verifica que la conexión no esté cerrada
+            self.assertFalse(conexion.closed)
         except OperationalError as e:
             self.fail(f"Error al liberar la conexión: {e}")
 
